@@ -1,0 +1,50 @@
+public class FullHouseJokers {
+    
+    public static boolean isFullHouse(Card[] hand){
+        String firstFace = "";
+        int firstCount = 0;
+        String secondFace = "";
+        int secondCount = 0;
+        for (int i = 0; i < hand.length; i++) {
+            if(hand[i].face != "*" ){
+                if(firstFace == ""){
+                    firstFace = hand[i].face;
+                    firstCount = 1;
+                }
+                else if(hand[i].face != firstFace && secondFace != ""){
+                    if(hand[i].face != secondFace){
+                        return false;
+                    }
+                    else{
+                        secondCount++;
+                        if(secondCount > 3){
+                            return false;
+                        }
+                    }
+                }
+                else if(hand[i].face != firstFace && secondFace == ""){
+                    secondFace = hand[i].face;
+                    secondCount = 1;
+                }
+                else{
+                    firstCount++;
+                    if(firstCount > 3){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    public static Card[] hand = new Card[5];
+ 
+    public static void main(String[] args) {
+        String[] faces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        String[] suits = {"♣", "♦", "♥", "♠"};
+        Card[] cards = new Card[57];
+        cards[0] = new Card("*", "");
+        cards[1] = new Card("*", "");
+        cards[2] = new Card("*", "");
+        cards[3] = new Card("*", "");
+        cards[4] = new Card("*", "");
