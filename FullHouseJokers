@@ -48,3 +48,33 @@ public class FullHouseJokers {
         cards[2] = new Card("*", "");
         cards[3] = new Card("*", "");
         cards[4] = new Card("*", "");
+        int p = 5;
+        for(int i = 0; i < suits.length; i++){
+            for(int j = 0; j < faces.length; j++){
+                cards[p++] = new Card(faces[j], suits[i]);
+            }
+        }
+        int fullHouseCount = 0;
+        for(int i = 0; i < cards.length - 4; i++){
+            for(int j = i + 1; j < cards.length - 3; j++){
+                for(int k = j + 1; k < cards.length - 2; k++){
+                    for(int l = k + 1; l < cards.length - 1; l++){
+                        for(int m = l + 1; m < cards.length; m++){
+                            Card[] hand = new Card[5];  
+                            hand[0] = cards[i];
+                            hand[1] = cards[j];
+                            hand[2] = cards[k];
+                            hand[3] = cards[l];
+                            hand[4] = cards[m];
+                            if(isFullHouse(hand)){
+                                fullHouseCount++;
+                                System.out.printf("( %s %s %s %s %s )", hand[0], hand[1], hand[2], hand[3], hand[4]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.printf("%d full houses", fullHouseCount);
+    }
+}
